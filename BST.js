@@ -15,7 +15,7 @@ function Tree(array) {
   const cleanArray = removeDuplicate(sortedArray);
   const root = buildTree(cleanArray);
 
-  function buildTree(array) {
+  function buildTree(array = []) {
     if (array.length == 0) return null;
 
     const mid = Math.floor(array.length / 2);
@@ -40,7 +40,6 @@ function Tree(array) {
 
   return {
     root,
-    buildTree,
     prettyPrint,
   }
 }
