@@ -52,8 +52,36 @@ function Tree(array = []) {
     prettyPrint(root);
   }
 
+  function insert(value) {
+    if (root == null) {
+      root = Node(value);
+      return;
+    }
+
+    let tmp = root;
+    let parent = null;
+    while (tmp) {
+      parent = tmp;
+
+      if (tmp.data > value) {
+        tmp = tmp.left;
+      } else if (tmp.data < value) {
+        tmp = tmp.right;
+      } else {
+        return;
+      }
+    }
+
+    if (parent.data > value) {
+      parent.left = Node(value);
+    } else {
+      parent.right = Node(value);
+    }
+  }
+
   return {
     root,
     toString,
+    insert,
   }
 }
