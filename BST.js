@@ -150,11 +150,39 @@ function Tree(array = []) {
     deleteNode(root, value);
   }
 
+  function levelOrder(callback) {
+    const queue = [];
+    const array = [];
+
+    if (root == null) return array;
+
+    queue.push(root);
+    while (queue.length > 0) {
+      const node = queue.shift();
+
+      if (callback && typeof callback == 'function') {
+        callback(node);
+      } else {
+        array.push(node.data);
+      }
+
+      if (node.left !== null) {
+        queue.push(node.left);
+      }
+      if (node.right !== null) {
+        queue.push(node.right);
+      }
+    }
+
+    if (!callback || typeof callback !== 'function') return array;
+  }
+
   return {
     root,
     toString,
     insert,
     find,
     deleteItem,
+    levelOrder,
   }
 }
