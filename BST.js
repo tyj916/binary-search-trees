@@ -42,7 +42,7 @@ function Tree(array = []) {
     if (array.length == 0) return null;
 
     const mid = Math.floor(array.length / 2);
-    const node = Node(array[mid]);
+    let node = Node(array[mid]);
     node.left = buildTree(array.slice(0, mid));
     node.right = buildTree(array.slice(mid + 1));
     return node;
@@ -79,9 +79,82 @@ function Tree(array = []) {
     }
   }
 
+  function find(value) {
+    let tmp = root;
+    
+    while (tmp) {
+      if (tmp.data === value) return tmp;
+
+      if (tmp.data > value) {
+        tmp = tmp.left;
+      }
+      if (tmp.data < value) {
+        tmp = tmp.right;
+      }
+    }
+
+    return null;
+  }
+
+  function deleteNode(node, value) {
+    if (node == null) return node;
+
+    if (node.data > value) {
+      node.left = deleteNode(node.left, value);
+      return node;
+    }
+    if (node.data < value) {
+      node.right = deleteNode(node.right, value);
+      return node;
+    }
+
+    // found target node, start removing
+    // if target has no child
+    if (node.left == null && node.right == null) {
+      node = null;
+      return node;
+    }
+
+    // if target has one child
+    if (node.left == null) {
+      node = node.right;
+      return node;
+    }
+    if (node.right == null) {
+      node = node.left;
+      return node;
+    }
+
+    // if target has both children 
+    let parent = node;
+    let child = node.right;
+    while (child.left) {
+      parent = child;
+      child = parent.left;
+    }
+
+    if (parent !== node) {
+      parent.left = child.right;
+    } else {
+      parent.right = child.right;
+    }
+
+    node.data = child.data;
+
+    return node;
+  }
+
+  function deleteItem(value) {
+    if (root == null) return;
+
+    deleteNode(root, value);
+  }
+
   return {
     root,
     toString,
     insert,
+    find,
+    deleteItem,
   }
 }
