@@ -155,7 +155,7 @@ function Tree(array = []) {
 
     const queue = [root];
     const array = [];
-    
+
     while (queue.length > 0) {
       const node = queue.shift();
 
@@ -176,6 +176,34 @@ function Tree(array = []) {
     if (!callback || typeof callback !== 'function') return array;
   }
 
+  function levelOrderTraversal(queue, callback, array = []) {
+    if (queue.length == 0) return;
+
+    const node = queue.shift();
+    if (callback && typeof callback == 'function') {
+      callback(node);
+    } else {
+      array.push(node.data);
+    }
+
+    if (node.left != null) {
+      queue.push(node.left);
+    }
+    if (node.right != null) {
+      queue.push(node.right);
+    }
+
+    levelOrderTraversal(queue, callback, array);
+    return array;
+  }
+
+  function levelOrderRecursion(callback) {
+    if (root == null) return [];
+
+    const array = levelOrderTraversal([root], callback);
+    if (!callback || typeof callback !== 'function') return array;
+  }
+
   return {
     root,
     toString,
@@ -183,5 +211,6 @@ function Tree(array = []) {
     find,
     deleteItem,
     levelOrder,
+    levelOrderRecursion,
   }
 }

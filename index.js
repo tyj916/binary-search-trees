@@ -5,8 +5,9 @@ const tree = Tree(array);
 tree.insert(15);
 tree.deleteItem(8);
 console.log(tree.find(7));
-tree.levelOrder((node) => {
+tree.levelOrderRecursion((node) => {
   node.data *= 2;
 });
 console.log(tree.levelOrder());
+console.log(tree.levelOrderRecursion());
 tree.toString();
