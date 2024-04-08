@@ -151,12 +151,11 @@ function Tree(array = []) {
   }
 
   function levelOrder(callback) {
-    const queue = [];
+    if (root == null) return [];
+
+    const queue = [root];
     const array = [];
-
-    if (root == null) return array;
-
-    queue.push(root);
+    
     while (queue.length > 0) {
       const node = queue.shift();
 
