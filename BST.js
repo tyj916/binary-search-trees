@@ -33,12 +33,12 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-function Tree(array) {
+function Tree(array = []) {
   const sortedArray = mergeSort(array);
   const cleanArray = removeDuplicate(sortedArray);
-  const root = buildTree(cleanArray);
+  let root = buildTree(cleanArray);
 
-  function buildTree(array = []) {
+  function buildTree(array) {
     if (array.length == 0) return null;
 
     const mid = Math.floor(array.length / 2);
