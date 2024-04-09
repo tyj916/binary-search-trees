@@ -20,4 +20,5 @@ tree.insert(32);
 tree.insert(33);
 tree.insert(34);
 tree.toString();
-console.log(tree.height(tree.find(18)));
+console.log(tree.height(tree.find(134)));
+console.log(tree.depth(tree.find(34)));

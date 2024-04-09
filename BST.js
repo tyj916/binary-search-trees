@@ -277,6 +277,25 @@ function Tree(array = []) {
     return left > right ? left : right;
   }
 
+  function depth(node) {
+    let tmp = root;
+    let count = 0;
+
+    while (tmp != node) {
+      if (node.data < tmp.data) {
+        tmp = tmp.left;
+        count++;
+      }
+
+      if (node.data > tmp.data) {
+        tmp = tmp.right;
+        count++;
+      }
+    }
+
+    return (count == 0) ? null : count + 1;
+  }
+
   return {
     root,
     toString,
@@ -289,5 +308,6 @@ function Tree(array = []) {
     preOrder,
     postOrder,
     height,
+    depth,
   }
 }
