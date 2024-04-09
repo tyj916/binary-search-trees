@@ -278,6 +278,8 @@ function Tree(array = []) {
   }
 
   function depth(node) {
+    if (node == null) return null;
+
     let tmp = root;
     let count = 0;
 
@@ -296,6 +298,14 @@ function Tree(array = []) {
     return (count == 0) ? null : count + 1;
   }
 
+  function isBalanced() {
+    const leftHeight = height(root.left);
+    const rightHeight = height(root.right);
+    const heightDiff = Math.abs(leftHeight - rightHeight);
+
+    return (heightDiff > 1) ? false : true;
+  }
+
   return {
     root,
     toString,
@@ -309,5 +319,6 @@ function Tree(array = []) {
     postOrder,
     height,
     depth,
+    isBalanced,
   }
 }

@@ -22,3 +22,4 @@ tree.insert(34);
 tree.toString();
 console.log(tree.height(tree.find(134)));
 console.log(tree.depth(tree.find(34)));
+console.log(tree.isBalanced());
