@@ -12,3 +12,5 @@ console.log(tree.levelOrder());
 console.log(tree.levelOrderRecursion());
 tree.toString();
 console.log(tree.inOrder());
+console.log(tree.preOrder());
+console.log(tree.postOrder());

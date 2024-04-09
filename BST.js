@@ -224,6 +224,44 @@ function Tree(array = []) {
     return inOrderTraversal(root, callback);
   }
 
+  function preOrderTraversal(node, callback, array = []) {
+    if (node == null) return [];
+
+    if (callback && typeof callback == 'function') {
+      callback(node);
+    } else {
+      array.push(node.data);
+    }
+
+    preOrderTraversal(node.left, callback, array);
+    preOrderTraversal(node.right, callback, array);
+
+    return array;
+  }
+
+  function preOrder(callback) {
+    return preOrderTraversal(root, callback);
+  }
+
+  function postOrderTraversal(node, callback, array = []) {
+    if (node == null) return [];
+
+    postOrderTraversal(node.left, callback, array);
+    postOrderTraversal(node.right, callback, array);
+
+    if (callback && typeof callback == 'function') {
+      callback(node);
+    } else {
+      array.push(node.data);
+    }
+
+    return array;
+  }
+
+  function postOrder(callback) {
+    return postOrderTraversal(root, callback);
+  }
+
   return {
     root,
     toString,
@@ -233,5 +271,7 @@ function Tree(array = []) {
     levelOrder,
     levelOrderRecursion,
     inOrder,
+    preOrder,
+    postOrder,
   }
 }
