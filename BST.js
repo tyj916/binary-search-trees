@@ -306,6 +306,11 @@ function Tree(array = []) {
     return (heightDiff > 1) ? false : true;
   }
 
+  function rebalance() {
+    const newArray = inOrder();
+    root = buildTree(newArray);
+  }
+
   return {
     root,
     toString,
@@ -320,5 +325,6 @@ function Tree(array = []) {
     height,
     depth,
     isBalanced,
+    rebalance,
   }
 }

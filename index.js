@@ -23,3 +23,7 @@ tree.toString();
 console.log(tree.height(tree.find(134)));
 console.log(tree.depth(tree.find(34)));
 console.log(tree.isBalanced());
+console.log('balancing...');
+tree.rebalance();
+console.log(tree.isBalanced());
+tree.toString();
