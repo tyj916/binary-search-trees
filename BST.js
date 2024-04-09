@@ -262,6 +262,21 @@ function Tree(array = []) {
     return postOrderTraversal(root, callback);
   }
 
+  function height(node) {
+    if (node == null) return 0;
+ 
+    let left = 1;
+    let right = 1;
+    if (node.left != null) {
+      left = height(node.left) + 1;
+    }
+    if (node.right != null) {
+      right = height(node.right) + 1;
+    }
+
+    return left > right ? left : right;
+  }
+
   return {
     root,
     toString,
@@ -273,5 +288,6 @@ function Tree(array = []) {
     inOrder,
     preOrder,
     postOrder,
+    height,
   }
 }
