@@ -11,3 +11,4 @@ tree.levelOrderRecursion((node) => {
 console.log(tree.levelOrder());
 console.log(tree.levelOrderRecursion());
 tree.toString();
+console.log(tree.inOrder());

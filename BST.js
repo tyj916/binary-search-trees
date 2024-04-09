@@ -204,6 +204,26 @@ function Tree(array = []) {
     if (!callback || typeof callback !== 'function') return array;
   }
 
+  function inOrderTraversal(node, callback, array = []) {
+    if (node == null) return [];
+
+    inOrderTraversal(node.left, callback, array);
+
+    if (callback && typeof callback == 'function') {
+      callback(node);
+    } else {
+      array.push(node.data);
+    }
+
+    inOrderTraversal(node.right, callback, array);
+
+    return array;
+  }
+
+  function inOrder(callback) {
+    return inOrderTraversal(root, callback);
+  }
+
   return {
     root,
     toString,
@@ -212,5 +232,6 @@ function Tree(array = []) {
     deleteItem,
     levelOrder,
     levelOrderRecursion,
+    inOrder,
   }
 }
